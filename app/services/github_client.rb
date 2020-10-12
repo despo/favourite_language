@@ -15,15 +15,19 @@ class GithubClient
     end
   end
 
+  # Custom error for a user without any repository languages
+  class NoLanguagesUsed < StandardError
+    def message
+      'The user has not used any programming languages'
+    end
+  end
+
   def initialize(username)
     @username = username
   end
   attr_reader :username
 
   def favourite_language
-    languages = user_repositories.inject(Hash.new(0)) do |data, repo|
-      data.update(repo.language => data[repo.language] + 1)
-    end
     languages.max_by { |(_, value)| value }.first
   end
 
@@ -31,6 +35,16 @@ class GithubClient
 
   def client
     @client ||= Octokit::Client.new
+  end
+
+  # Calculates the amount of times a language is the prevalent one in the user's repositories
+  def languages
+    languages = user_repositories.inject(Hash.new(0)) do |data, repo|
+      next data if repo.language.nil?
+
+      data.update(repo.language => data[repo.language] + 1)
+    end
+    languages.empty? ? raise(NoLanguagesUsed) : languages
   end
 
   def user_repositories

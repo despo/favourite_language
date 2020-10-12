@@ -12,5 +12,9 @@ describe GithubClient do
     it 'throws a NoUserRepositories exception when a user has no repositories' do
       expect { described_class.new('ariana-zz').favourite_language }.to raise_error(GithubClient::NoUserRepositories)
     end
+
+    it 'throws a NoLanguagesUsed exception when a user has not used any programming languages' do
+      expect { described_class.new('hkjj').favourite_language }.to raise_error(GithubClient::NoLanguagesUsed)
+    end
   end
 end
