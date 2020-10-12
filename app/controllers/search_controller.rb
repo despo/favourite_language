@@ -2,7 +2,7 @@
 class SearchController < ApplicationController
   # Use GET to search and render Favourite Language search page
   def show
-    build_user
+    build_user if searched?
   end
 
   private
@@ -18,5 +18,10 @@ class SearchController < ApplicationController
   def build_user
     @user = User.new(user_params)
     @user.valid?
+  end
+
+  # Check if the user has fired a search event by submitting the form
+  def searched?
+    params[:commit].present?
   end
 end
