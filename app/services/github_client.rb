@@ -8,6 +8,13 @@ class GithubClient
     end
   end
 
+  # Custom error for a user without any repositories
+  class NoUserRepositories < StandardError
+    def message
+      'The user has no repositories so no favourite language can be identified'
+    end
+  end
+
   def initialize(username)
     @username = username
   end
@@ -27,7 +34,10 @@ class GithubClient
   end
 
   def user_repositories
-    client.user(username).rels[:repos].get.data
+    user_repositories = client.user(username).rels[:repos].get.data
+    raise NoUserRepositories if user_repositories.empty?
+
+    user_repositories
   rescue Octokit::NotFound
     raise UserNotFound
   end
