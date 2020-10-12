@@ -10,3 +10,7 @@ AllCops:
     - 'bin/*'
     - 'config/initializers/simple_form*.rb'
     - 'node_modules/**/**/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

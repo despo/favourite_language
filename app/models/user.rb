@@ -8,5 +8,7 @@ class User
 
   def favourite_language
     GithubClient.new(username).favourite_language
+  rescue StandardError => e
+    e.message
   end
 end

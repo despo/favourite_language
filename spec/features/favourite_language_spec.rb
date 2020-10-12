@@ -21,5 +21,13 @@ RSpec.describe FavouriteLanguage do
 
       within('#favourite-language') { expect(page).to have_content('Ruby') }
     end
+
+    it 'displays an appropriate message when there is a service returned error' do
+      visit root_path
+      fill_in 'user[username]', with: '@despo'
+      click_on 'Find'
+
+      within('#favourite-language') { expect(page).to have_content('User not found') }
+    end
   end
 end
