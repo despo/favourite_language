@@ -4,3 +4,14 @@
     <p class='lead'>Retrieve anyone's favourite programming language using their Github username!</p>
   </div>
 </div>
+
+<div class='row'>
+  <div class='col'>
+    <%= simple_form_for @user || User.new, url: root_path, method: :get do |f| %>
+      <div class="form-group">
+        <%= f.input :username, label: false %>
+        <%= f.submit 'Find', class: 'btn btn-primary' %>
+      </div>
+    <%end%>
+  </div>
+</div>

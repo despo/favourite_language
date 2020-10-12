@@ -5,4 +5,11 @@ RSpec.describe FavouriteLanguage do
 
     expect(page).not_to have_content('Username can\'t be blank')
   end
+
+  it 'When searching without specifying a username an error is displayed' do
+    visit root_path
+    click_on 'Find'
+
+    expect(page).to have_content('Username can\'t be blank')
+  end
 end
