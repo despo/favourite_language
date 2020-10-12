@@ -10,7 +10,13 @@ A rails application that enables a user to enter a GitHub username and be presen
 
 `bundle install`
 
-## Run tests
+## Run checks
+
+Run style checked and tests
+
+`bundle exec rake`
+
+### Run tests
 
 Run all the tests
 
@@ -19,3 +25,7 @@ Run all the tests
 Run an individual test
 
 `bundle exec rspec spec/path/to/file`
+
+### Run style checker
+
+`bundle exec rake rubocop`
