@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'octokit', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
