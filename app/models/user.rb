@@ -5,4 +5,8 @@ class User
   attr_accessor :username
 
   validates :username, presence: true
+
+  def favourite_language
+    GithubClient.new(username).favourite_language
+  end
 end

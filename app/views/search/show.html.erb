@@ -15,3 +15,12 @@
     <%end%>
   </div>
 </div>
+<% if @user && @user.valid? %>
+  <div id='favourite-language' class='row'>
+    <div class='col'>
+      <div class='text-center'>
+        <%= @user.favourite_language %>
+      </div>
+    </div>
+  </div>
+<% end %>
